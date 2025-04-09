@@ -1,4 +1,6 @@
 <script>
+  import { twMerge } from 'tailwind-merge';
+
   // Chevron Icons
   import chevronDown from '@icons/chevron-down.svg?raw';
 
@@ -75,4 +77,4 @@
   }
 </script>
 
-<div class={className}>{@html svg}</div>
+<div class={twMerge('grid place-items-center', className)}>{@html svg}</div>

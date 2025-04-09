@@ -12,6 +12,7 @@ export default defineConfig({
       { find: '@icons', replacement: '/src/lib/icons' },
       { find: '@assets', replacement: '/src/lib/assets' },
       { find: '@styles', replacement: '/src/lib/styles' },
+      { find: '@graphql', replacement: '/src/lib/graphql' },
       { find: '@components', replacement: '/src/lib/components' }
     ]
   }
