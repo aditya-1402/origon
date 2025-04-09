@@ -1,6 +1,7 @@
 <script>
   import '../app.css';
   import { onMount } from 'svelte';
+  import Icon from '@components/shared/Icon.svelte';
 
   // STATES & PROPS
   let mediaQuery;
