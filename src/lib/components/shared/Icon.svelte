@@ -2,11 +2,14 @@
   import { twMerge } from 'tailwind-merge';
 
   // Chevron Icons
-  import chevronDown from '@icons/chevron-down.svg?raw';
+  import chevronUp from '@icons/chevron/chevron-up.svg?raw';
+  import chevronDown from '@icons/chevron/chevron-down.svg?raw';
+  import chevronLeft from '@icons/chevron/chevron-left.svg?raw';
+  import chevronRight from '@icons/chevron/chevron-right.svg?raw';
 
   // Status Icons
-  import deploy from '@icons/deploy.svg?raw';
-  import status from '@icons/status.svg?raw';
+  import deploy from '@icons/status/deploy.svg?raw';
+  import status from '@icons/status/status.svg?raw';
 
   // Node Pool Icons
   import randomOne from '@icons/pool/random-one.svg?raw';
@@ -20,8 +23,8 @@
   import randomNine from '@icons/pool/random-nine.svg?raw';
   import randomTen from '@icons/pool/random-ten.svg?raw';
 
-  // Options Icons
-  import options from '@icons/options.svg?raw';
+  // Miscellaneous Icons
+  import options from '@icons/miscellaneous/options.svg?raw';
 
   // STATES & PROPS
   let { name, className } = $props();
@@ -30,15 +33,27 @@
   let svg = $state(null);
 
   switch (name) {
+    // Chevron Icons
     case 'chevron-down':
       svg = chevronDown;
       break;
+    case 'chevron-left':
+      svg = chevronLeft;
+      break;
+    case 'chevron-right':
+      svg = chevronRight;
+      break;
+    case 'chevron-up':
+      svg = chevronUp;
+      break;
+    // Status Icons
     case 'deploy':
       svg = deploy;
       break;
     case 'status':
       svg = status;
       break;
+    // Node Pool Icons
     case 'random-one':
       svg = randomOne;
       break;
@@ -69,6 +84,7 @@
     case 'random-ten':
       svg = randomTen;
       break;
+    // Miscellaneous Icons
     case 'options':
       svg = options;
       break;
