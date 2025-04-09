@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@theme {
+	--color-accent: #f35b05;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-accent: #f59e0b;
+	}
+}
+
+.dark {
+	--color-accent: #f59e0b;
+}
