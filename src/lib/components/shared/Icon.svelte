@@ -24,9 +24,11 @@
   import randomTen from '@icons/nodes/random-ten.svg?raw';
 
   // Miscellaneous Icons
+  import plus from '@icons/miscellaneous/plus.svg?raw';
   import trash from '@icons/miscellaneous/trash.svg?raw';
   import options from '@icons/miscellaneous/options.svg?raw';
   import rename from '@icons/miscellaneous/rename.svg?raw';
+  import origon from '@icons/miscellaneous/origon.svg?raw';
   import samespace from '@icons/miscellaneous/samespace.svg?raw';
 
   // STATES & PROPS
@@ -99,6 +101,12 @@
       break;
     case 'trash':
       svg = trash;
+      break;
+    case 'origon':
+      svg = origon;
+      break;
+    case 'plus':
+      svg = plus;
       break;
     default:
       svg = null;
