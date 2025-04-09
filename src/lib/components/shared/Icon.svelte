@@ -12,16 +12,16 @@
   import status from '@icons/status/status.svg?raw';
 
   // Node Pool Icons
-  import randomOne from '@icons/pool/random-one.svg?raw';
-  import randomTwo from '@icons/pool/random-two.svg?raw';
-  import randomThree from '@icons/pool/random-three.svg?raw';
-  import randomFour from '@icons/pool/random-four.svg?raw';
-  import randomFive from '@icons/pool/random-five.svg?raw';
-  import randomSix from '@icons/pool/random-six.svg?raw';
-  import randomSeven from '@icons/pool/random-seven.svg?raw';
-  import randomEight from '@icons/pool/random-eight.svg?raw';
-  import randomNine from '@icons/pool/random-nine.svg?raw';
-  import randomTen from '@icons/pool/random-ten.svg?raw';
+  import randomOne from '@icons/nodes/random-one.svg?raw';
+  import randomTwo from '@icons/nodes/random-two.svg?raw';
+  import randomThree from '@icons/nodes/random-three.svg?raw';
+  import randomFour from '@icons/nodes/random-four.svg?raw';
+  import randomFive from '@icons/nodes/random-five.svg?raw';
+  import randomSix from '@icons/nodes/random-six.svg?raw';
+  import randomSeven from '@icons/nodes/random-seven.svg?raw';
+  import randomEight from '@icons/nodes/random-eight.svg?raw';
+  import randomNine from '@icons/nodes/random-nine.svg?raw';
+  import randomTen from '@icons/nodes/random-ten.svg?raw';
 
   // Miscellaneous Icons
   import options from '@icons/miscellaneous/options.svg?raw';
