@@ -2,15 +2,20 @@
 @plugin '@tailwindcss/typography';
 
 @theme {
-	--color-accent: #f35b05;
+  --color-muted: #6b7280;
+  --color-accent: #f35b05;
+
+  --color-card: #ffffff;
+  --color-secondary: #ececec;
+  --color-background: #ffffff;
+  --color-foreground: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		--color-accent: #f59e0b;
-	}
-}
-
-.dark {
-	--color-accent: #f59e0b;
+  :root {
+    --color-card: #212121;
+    --color-secondary: #2e2e2e;
+    --color-background: #212121;
+    --color-foreground: #ffffff;
+  }
 }

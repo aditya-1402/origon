@@ -16,12 +16,9 @@
 
   // LIFECYCLE METHODS
   onMount(() => {
+    // Light & Dark Mode Settings
     mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-    // Set Initial Mode
     updateDarkClass(mediaQuery);
-
-    // Watch For Changes
     mediaQuery.addEventListener('change', updateDarkClass);
 
     return () => {
@@ -30,11 +27,4 @@
   });
 </script>
 
-<div>
-  <h1 class="text-accent">Hello World</h1>
-  <button
-    onclick={() => {
-      document.documentElement.classList.toggle('dark');
-    }}>Toggle</button
-  >
-</div>
+<div class="text-foreground"></div>
