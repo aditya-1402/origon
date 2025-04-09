@@ -9,6 +9,7 @@
 
 <DropdownPrimitive.Content
   forceMount
+  loop={true}
   class={twMerge(
     "py-2",
     "w-48 z-50",

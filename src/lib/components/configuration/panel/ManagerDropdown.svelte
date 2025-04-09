@@ -8,6 +8,7 @@
 </script>
 
 <Select.Root
+  loop={true}
   bind:open={isOpen}
   type="single"
   onValueChange={(v) => (selectedValue = v)}
