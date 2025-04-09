@@ -1,7 +1,10 @@
 <script>
   import '../app.css';
   import { onMount } from 'svelte';
+
   import Icon from '@components/shared/Icon.svelte';
+  import Canvas from '@components/canvas/Canvas.svelte';
+  import Configuration from '@components/configuration/Configuration.svelte';
 
   // STATES & PROPS
   let mediaQuery;
@@ -28,4 +31,7 @@
   });
 </script>
 
-<div class="text-foreground"></div>
+<div class="text-foreground bg-background flex h-[calc(100vh-56px)] flex-col lg:flex-row">
+  <Configuration />
+  <Canvas />
+</div>

@@ -5,9 +5,10 @@
   /* Color Configuration */
   --color-muted: #6b7280;
   --color-accent: #f35b05;
+  --color-danger: #ef4444;
 
   --color-card: #ffffff;
-  --color-secondary: #ececec;
+  --color-secondary: #fbfaf9;
   --color-background: #ffffff;
   --color-foreground: #000000;
 
@@ -30,4 +31,11 @@
     --color-background: #212121;
     --color-foreground: #ffffff;
   }
+}
+
+.dropdown-icon {
+  @apply group-hover:text-accent group-focus:text-accent text-stone-500 transition-colors duration-200;
+}
+.dropdown-icon-destructive {
+  @apply text-danger group-hover:text-danger group-focus:text-danger transition-colors duration-200;
 }

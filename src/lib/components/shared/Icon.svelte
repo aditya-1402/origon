@@ -24,10 +24,13 @@
   import randomTen from '@icons/nodes/random-ten.svg?raw';
 
   // Miscellaneous Icons
+  import trash from '@icons/miscellaneous/trash.svg?raw';
   import options from '@icons/miscellaneous/options.svg?raw';
+  import rename from '@icons/miscellaneous/rename.svg?raw';
+  import samespace from '@icons/miscellaneous/samespace.svg?raw';
 
   // STATES & PROPS
-  let { name, className } = $props();
+  let { name, className, ...restProps } = $props();
 
   // ICON HANDLER
   let svg = $state(null);
@@ -88,9 +91,20 @@
     case 'options':
       svg = options;
       break;
+    case 'samespace':
+      svg = samespace;
+      break;
+    case 'rename':
+      svg = rename;
+      break;
+    case 'trash':
+      svg = trash;
+      break;
     default:
       svg = null;
   }
 </script>
 
-<div class={twMerge('grid place-items-center', className)}>{@html svg}</div>
+<div class={twMerge('grid shrink-0 place-items-center', className)} {...restProps}>
+  {@html svg}
+</div>

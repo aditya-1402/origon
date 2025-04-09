@@ -1,0 +1,24 @@
+<script>
+  import * as Select from '@components/ui/select/index';
+  import * as Dropdown from '@components/ui/dropdown-menu/index';
+  import Icon from '@components/shared/Icon.svelte';
+  import ManagerDropdown from './ManagerDropdown.svelte';
+  import StatusDropdown from './StatusDropdown.svelte';
+  import ActionDropdown from './ActionDropdown.svelte';
+</script>
+
+<div class="absolute top-0 left-0 flex w-full items-center justify-between px-20 py-6">
+  <ManagerDropdown />
+
+  <div class="flex items-center gap-10">
+    <!-- Second Select -->
+    <StatusDropdown />
+    <!-- Deploy Button -->
+    <button class="text-accent flex items-center gap-1 px-4 py-2">
+      <Icon name="deploy" className="size-5" />
+      Deploy
+    </button>
+    <!-- Action Dropdown -->
+    <ActionDropdown />
+  </div>
+</div>
