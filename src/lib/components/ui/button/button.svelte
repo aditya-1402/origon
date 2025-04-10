@@ -10,8 +10,9 @@
     'px-4 py-2',
     'rounded-full',
     'text-foreground',
-    'transition-colors duration-300',
-    'hover: text-accent hover:bg-accent/10',
+    'transition-all duration-300',
+    'hover:text-accent hover:bg-accent/10',
+    'disabled:cursor-not-allowed disabled:opacity-50',
     className
   )}
   {...restProps}

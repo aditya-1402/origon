@@ -30,6 +30,7 @@
   import rename from '@icons/miscellaneous/rename.svg?raw';
   import origon from '@icons/miscellaneous/origon.svg?raw';
   import samespace from '@icons/miscellaneous/samespace.svg?raw';
+  import origonColor from '@icons/miscellaneous/origonColor.svg?raw';
 
   // STATES & PROPS
   let { name, className, ...restProps } = $props();
@@ -107,6 +108,9 @@
       break;
     case 'plus':
       svg = plus;
+      break;
+    case 'origon-color':
+      svg = origonColor;
       break;
     default:
       svg = null;

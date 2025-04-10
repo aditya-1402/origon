@@ -3,6 +3,7 @@
   import { scale } from 'svelte/transition';
   import { AGENT_COLORS } from '$lib/utils/constants';
   import Icon from '$lib/components/shared/Icon.svelte';
+  import CreateAgentDropdown from './CreateAgentDropdown.svelte';
 
   // CONSTANTS
   const MAX_NODES = 10;
@@ -27,6 +28,8 @@
   // STATES & PROPS
   let centerX = $state();
   let centerY = $state();
+
+  let isDialogOpen = $state(false);
 
   let radius = $state(100);
   let mainNodeSize = $state(100);
@@ -53,14 +56,13 @@
     return icon;
   }
 
-  function addNode() {
+  function addNode(agentName) {
     if (nodes.length >= MAX_NODES + 1) return; // +1 for create node
 
     const nodeIcon = generateNodeIcon();
-    console.log('nodeIcon', nodeIcon);
     const newNode = {
       id: `node-${nodes.length}`,
-      label: `Node ${nodes.length}`,
+      label: agentName,
       color: generateNodeColor(),
       icon: nodeIcon
     };
@@ -71,6 +73,14 @@
     } else {
       nodes = [CREATE_NODE, ...nodes.slice(1), newNode];
     }
+  }
+
+  function handleNodeSelection(node) {
+    console.log(`${node.label} is selected.`);
+  }
+
+  function openCreateDialog() {
+    isDialogOpen = true;
   }
 
   function calculateNodePositions(index, totalNodes) {
@@ -185,11 +195,7 @@
           background-color: {node.color};
           color: white;
         "
-        onclick={node.id === 'create-node'
-          ? addNode
-          : () => {
-              console.log('node clicked', node.label);
-            }}
+        onclick={node.id === 'create-node' ? openCreateDialog : () => handleNodeSelection(node)}
       >
         {#if node.id === 'create-node'}
           <Icon name="plus" class="size-6" />
@@ -197,12 +203,14 @@
           <Icon name={node.icon} class="size-6" />
         {/if}
       </button>
-      <span class="bg-card dark:bg-secondary mt-2 rounded-full px-3 py-1 text-xs shadow"
+      <span class="bg-card dark:bg-muted mt-2 rounded-full px-3 py-1 text-sm shadow"
         >{node.id === 'create-node' ? 'Create Action' : node.label}</span
       >
     </div>
   {/each}
 </div>
+
+<CreateAgentDropdown bind:open={isDialogOpen} onSubmit={addNode} />
 
 <style>
   #main-node {

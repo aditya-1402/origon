@@ -78,9 +78,13 @@ button {
   cursor: pointer;
 }
 
+::selection {
+  background-color: #f35c0558;
+}
+
 @theme {
   /* Color Configuration */
-  --color-muted: #6b7280;
+  --color-muted: #424242;
   --color-accent: #f35b05;
   --color-danger: #ef4444;
 
