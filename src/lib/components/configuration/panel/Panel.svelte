@@ -5,6 +5,7 @@
   import ManagerDropdown from './ManagerDropdown.svelte';
   import StatusDropdown from './StatusDropdown.svelte';
   import ActionDropdown from './ActionDropdown.svelte';
+  import { Button } from '@components/ui/button/index';
 </script>
 
 <div class="bg-secondary sticky top-0 left-0 z-10 flex w-full items-center justify-between py-6">
@@ -14,10 +15,10 @@
     <!-- Second Select -->
     <StatusDropdown />
     <!-- Deploy Button -->
-    <button class="text-accent flex items-center gap-1 px-4 py-2">
+    <Button className="flex items-center gap-1 text-accent">
       <Icon name="deploy" className="size-5" />
       Deploy
-    </button>
+    </Button>
     <!-- Action Dropdown -->
     <ActionDropdown />
   </div>
