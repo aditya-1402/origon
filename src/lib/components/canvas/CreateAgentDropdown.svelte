@@ -11,9 +11,15 @@
     open = false;
     agentName = '';
   }
+
+  function handleOpenChange(open) {
+    if (!open) {
+      agentName = '';
+    }
+  }
 </script>
 
-<Dialog.Root bind:open>
+<Dialog.Root bind:open onOpenChange={handleOpenChange}>
   <Dialog.Overlay />
   <Dialog.Content className="flex flex-col gap-4">
     <div class="flex items-center gap-2">
