@@ -23,6 +23,13 @@
   import randomNine from '@icons/nodes/random-nine.svg?raw';
   import randomTen from '@icons/nodes/random-ten.svg?raw';
 
+  // Tool Icons
+  import github from '@icons/tools/github.svg?raw';
+  import docker from '@icons/tools/docker.svg?raw';
+  import linear from '@icons/tools/linear.svg?raw';
+  import slack from '@icons/tools/slack.svg?raw';
+  import notion from '@icons/tools/notion.svg?raw';
+
   // Miscellaneous Icons
   import plus from '@icons/miscellaneous/plus.svg?raw';
   import trash from '@icons/miscellaneous/trash.svg?raw';
@@ -111,6 +118,22 @@
       break;
     case 'origon-color':
       svg = origonColor;
+      break;
+    // Tool Icons
+    case 'github':
+      svg = github;
+      break;
+    case 'docker':
+      svg = docker;
+      break;
+    case 'linear':
+      svg = linear;
+      break;
+    case 'slack':
+      svg = slack;
+      break;
+    case 'notion':
+      svg = notion;
       break;
     default:
       svg = null;

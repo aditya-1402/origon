@@ -8,7 +8,7 @@
   import { Button } from '@components/ui/button/index';
 </script>
 
-<div class="bg-secondary sticky top-0 left-0 z-10 flex w-full items-center justify-between py-6">
+<div class="bg-secondary sticky top-0 left-0 right-0 z-10 flex w-full items-center justify-between py-6 px-20">
   <ManagerDropdown />
 
   <div class="flex items-center gap-10">

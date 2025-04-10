@@ -9,7 +9,11 @@
   onMount(() => {
     editor = new Editor({
       element: element,
-      extensions: [StarterKit],
+      extensions: [
+        StarterKit.configure({
+          heading: false
+        })
+      ],
       content: '<p>Hello World! 🌍️ </p>',
       editorProps: {
         attributes: {
@@ -30,7 +34,7 @@
   });
 </script>
 
-<div class="prose text-foreground min-h-50 w-full max-w-none text-base" bind:this={element}></div>
+<div class="prose text-foreground min-h-50 w-full max-w-none" bind:this={element}></div>
 
 <style>
   button.active {

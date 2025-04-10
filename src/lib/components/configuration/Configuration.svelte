@@ -7,12 +7,12 @@
 </script>
 
 <div
-  class="bg-secondary relative flex h-full w-full flex-col gap-4 overflow-y-auto px-20 pb-6 lg:w-[55%]"
+  class="bg-secondary relative flex h-full w-full flex-col gap-4 overflow-y-auto pb-6 lg:w-[55%]"
 >
-  <div class="flex flex-col gap-4">
-    <Panel />
+  <Panel />
+  <div class="flex flex-col gap-4 px-20">
     <Instruction />
-    <Separator/>
+    <Separator />
     <Tools />
     <Editor />
   </div>
