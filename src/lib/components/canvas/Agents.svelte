@@ -171,7 +171,7 @@
       in:scale={{
         duration: 500
       }}
-      class="absolute flex flex-col items-center transition-all duration-500 ease-in-out"
+      class="absolute flex flex-col items-center gap-2 transition-all duration-500 ease-in-out"
       style="transform: translate({position.x}px, {position.y}px);"
     >
       <button

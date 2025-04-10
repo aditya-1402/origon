@@ -1,22 +1,33 @@
 <script>
   import SectionLabel from '@components/shared/SectionLabel.svelte';
-  let tools = ['Hammer', 'Wrench', 'Drill', 'Saw']; // example tools
+  import Icon from '$lib/components/shared/Icon.svelte';
+
+  let tools = [
+    { name: 'Hammer', icon: 'hammer' },
+    { name: 'Wrench', icon: 'wrench' },
+    { name: 'Drill', icon: 'drill' },
+    { name: 'Saw', icon: 'saw' }
+  ];
 </script>
 
-<section>
+<section class="flex flex-col gap-4">
   <SectionLabel>Tools</SectionLabel>
 
-  <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+  <div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
     {#each tools as tool}
-      <div class="cursor-pointer rounded-lg bg-gray-100 p-4 shadow transition hover:bg-gray-200">
-        {tool}
+      <div
+        class="flex cursor-pointer flex-col items-center gap-4 rounded-lg bg-gray-100 px-8 py-6 shadow transition hover:bg-gray-200"
+      >
+        <Icon name="random-one" class="size-8" />
+        <span class="text-xs">{tool.name}</span>
       </div>
     {/each}
 
     <div
-      class="cursor-pointer rounded-lg border-2 border-dashed border-gray-400 bg-white p-4 text-center text-gray-500 transition hover:bg-gray-100"
+      class="flex cursor-pointer flex-col items-center gap-2 rounded-lg border-2 border-dashed border-gray-400 bg-white p-4 text-gray-500 transition hover:bg-gray-100"
     >
-      + Add Tool
+      <Icon name="plus" class="size-8" />
+      <span class="text-sm">Add Tool</span>
     </div>
   </div>
 </section>
