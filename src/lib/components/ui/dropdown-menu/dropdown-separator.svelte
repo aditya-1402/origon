@@ -6,6 +6,6 @@
 </script>
 
 <DropdownPrimitive.Separator
-  class={twMerge('my-2', 'h-px w-full', 'bg-muted/10', className)}
+  class={twMerge('my-2', 'h-px w-full', 'bg-black/10 dark:bg-white/10', className)}
   {...restProps}
 />

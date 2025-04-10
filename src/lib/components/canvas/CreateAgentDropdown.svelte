@@ -37,7 +37,7 @@
     <div class="flex justify-end gap-2">
       <Button
         onclick={() => (open = false)}
-        className="hover:text-stone-500 dark:hover:text-foreground dark:text-stone-500 hover:bg-transparent"
+        className="hover:text-muted dark:hover:text-foreground dark:text-muted hover:bg-transparent"
         >Cancel</Button
       >
       <Button disabled={!agentName} onclick={handleSubmit} className="text-accent">Create</Button>

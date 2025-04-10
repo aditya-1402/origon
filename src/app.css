@@ -84,7 +84,7 @@ button {
 
 @theme {
   /* Color Configuration */
-  --color-muted: #424242;
+  --color-muted: #737373;
   --color-accent: #f35b05;
   --color-danger: #ef4444;
 
@@ -115,7 +115,7 @@ button {
 }
 
 .dropdown-icon {
-  @apply group-hover:text-accent group-focus:text-accent text-stone-500 transition-colors duration-200;
+  @apply group-hover:text-accent group-focus:text-accent text-muted transition-colors duration-200;
 }
 .dropdown-icon-destructive {
   @apply text-danger group-hover:text-danger group-focus:text-danger transition-colors duration-200;

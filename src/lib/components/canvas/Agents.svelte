@@ -111,7 +111,7 @@
 
     const distance = Math.sqrt(x * x + y * y);
     const distFactor = 0.25; // how far out the control points reach
-    const lift = distance * 0.15; // how much curve is applied vertically
+    const lift = distance * 0.3; // how much curve is applied vertically
 
     const controlX1 = x * distFactor;
     const controlY1 = y < 0 ? y * distFactor - lift : y * distFactor + lift;

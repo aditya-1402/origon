@@ -14,11 +14,14 @@
   onValueChange={(v) => (selectedValue = v)}
   items={options}
 >
-  <Select.Trigger className="font-medium text-base flex items-center"
+  <Select.Trigger className="flex items-center !text-base !font-medium"
     ><p>{selectedValue}</p>
     <Icon
       name="chevron-down"
-      className={['size-6 text-muted transition-transform duration-300', isOpen && 'rotate-180']}
+      className={[
+        'size-6 text-muted transition-transform duration-300',
+        isOpen && 'rotate-180'
+      ]}
     /></Select.Trigger
   >
   <Select.Content>

@@ -5,8 +5,11 @@
 
 <!-- Dropdown Menu -->
 <Dropdown.Root>
-  <Dropdown.Trigger>
-    <Icon name="options" className="size-6 text-muted" />
+  <Dropdown.Trigger className="group hover:bg-accent/10 rounded-full">
+    <Icon
+      name="options"
+      className="size-6 text-muted transition-colors duration-300 group-hover:text-accent"
+    />
   </Dropdown.Trigger>
   <Dropdown.Content sideOffset={3} className="w-40">
     <Dropdown.Item>

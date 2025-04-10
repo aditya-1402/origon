@@ -18,7 +18,10 @@
     ><p>{selectedValue}</p>
     <Icon
       name="chevron-down"
-      className={['size-6 text-muted transition-transform duration-300', isOpen && 'rotate-180']}
+      className={[
+        'size-6 text-muted transition-transform duration-300',
+        isOpen && 'rotate-180'
+      ]}
     /></Select.Trigger
   >
   <Select.Content className="w-40">
