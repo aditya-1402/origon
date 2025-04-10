@@ -26,6 +26,7 @@
   };
 
   // STATES & PROPS
+
   let centerX = $state();
   let centerY = $state();
 
@@ -57,14 +58,13 @@
   }
 
   function addNode(agentName) {
-    if (nodes.length >= MAX_NODES + 1) return; // +1 for create node
+    if (nodes.length >= MAX_NODES + 1) return;
 
-    const nodeIcon = generateNodeIcon();
     const newNode = {
       id: `node-${nodes.length}`,
       label: agentName,
       color: generateNodeColor(),
-      icon: nodeIcon
+      icon: generateNodeIcon()
     };
 
     if (nodes.length === MAX_NODES) {
@@ -90,28 +90,28 @@
 
     // For multiple nodes, distribute them evenly
     const angleStep = (2 * Math.PI) / totalNodes;
+    console.log('Angle Step:', angleStep);
     // Start from the top (-Math.PI/2) and go clockwise
     const angle = -Math.PI / 2 + index * angleStep;
-
+    console.log('Angle:', angle);
     const x = radius * Math.cos(angle);
     const y = radius * Math.sin(angle);
+    console.log('X:', x);
+    console.log('Y:', y);
 
     return { x, y };
   }
 
-  function generateStraightLine(x, y) {
-    return `M 0,0 L ${x},${y}`;
-  }
-
   function generatePath(x, y) {
-    const isOnAxis = x === 0 || y === 0;
+    const isOnAxis = Math.abs(x) < 0.0001 || Math.abs(y) < 0.0001;
 
     if (isOnAxis) {
       return `M 0,0 L ${x},${y}`;
     }
 
+    const distance = Math.sqrt(x * x + y * y);
     const distFactor = 0.25; // how far out the control points reach
-    const lift = 25; // how much curve is applied vertically
+    const lift = distance * 0.15; // how much curve is applied vertically
 
     const controlX1 = x * distFactor;
     const controlY1 = y < 0 ? y * distFactor - lift : y * distFactor + lift;
@@ -152,7 +152,7 @@
   class="relative flex h-full w-full items-center justify-center overflow-hidden"
 >
   <svg class="pointer-events-none absolute h-full w-full">
-    <g transform={`translate(${centerX}, ${centerY})`}>
+    <g transform={`translate(${centerX || 0}, ${centerY || 0})`}>
       {#each nodes as node, index (node.id)}
         {@const position = calculateNodePositions(index, nodes.length)}
         <path
@@ -180,33 +180,36 @@
 
   {#each nodes as node, index (node.id)}
     {@const position = calculateNodePositions(index, nodes.length)}
-    <div
+    <button
       in:scale={{
         duration: 500
       }}
-      class="absolute flex flex-col items-center gap-2 transition-all duration-500 ease-in-out"
-      style="transform: translate({position.x}px, {position.y}px);"
+      class="absolute flex transform items-center justify-center rounded-full shadow-md transition-all duration-500 ease-in-out hover:scale-105"
+      style="
+        width: {childNodeSize}px;
+        height: {childNodeSize}px;
+        background-color: {node.color};
+        color: white;
+        transform-origin: center;
+        transform: translate({position.x}px, {position.y}px);
+      "
+      onclick={node.id === 'create-node' ? openCreateDialog : () => handleNodeSelection(node)}
     >
-      <button
-        class="flex transform items-center justify-center rounded-full shadow-md transition-all duration-500 ease-in-out hover:scale-110"
-        style="
-          width: {childNodeSize}px;
-          height: {childNodeSize}px;
-          background-color: {node.color};
-          color: white;
-        "
-        onclick={node.id === 'create-node' ? openCreateDialog : () => handleNodeSelection(node)}
-      >
-        {#if node.id === 'create-node'}
-          <Icon name="plus" class="size-6" />
-        {:else}
-          <Icon name={node.icon} class="size-6" />
-        {/if}
-      </button>
-      <span class="bg-card dark:bg-muted mt-2 rounded-full px-3 py-1 text-sm shadow"
-        >{node.id === 'create-node' ? 'Create Action' : node.label}</span
-      >
-    </div>
+      {#if node.id === 'create-node'}
+        <Icon name="plus" class="size-6" />
+      {:else}
+        <Icon name={node.icon} class="size-6" />
+      {/if}
+    </button>
+
+    <span
+      class="bg-card dark:bg-muted absolute rounded-full px-3 py-1 text-sm shadow"
+      style="
+        transform: translate({position.x}px, {position.y + childNodeSize / 2 + 20}px)
+      "
+    >
+      {node.id === 'create-node' ? 'Create Action' : node.label}
+    </span>
   {/each}
 </div>
 
