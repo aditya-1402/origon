@@ -15,7 +15,7 @@
     'z-50 w-48',
     'outline-none',
     'rounded-lg shadow-lg',
-    'bg-clay-150 dark:bg-clay-300',
+    'bg-card dark:bg-secondary',
     'border border-black/10 dark:border-white/10',
     className
   )}

@@ -7,7 +7,7 @@
   import ActionDropdown from './ActionDropdown.svelte';
 </script>
 
-<div class="absolute top-0 left-0 flex w-full items-center justify-between px-20 py-6">
+<div class="bg-secondary sticky top-0 left-0 z-10 flex w-full items-center justify-between py-6">
   <ManagerDropdown />
 
   <div class="flex items-center gap-10">

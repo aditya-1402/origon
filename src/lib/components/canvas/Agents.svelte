@@ -53,11 +53,13 @@
   function addNode() {
     if (nodes.length >= MAX_NODES + 1) return; // +1 for create node
 
+    const nodeIcon = generateNodeIcon();
+    console.log('nodeIcon', nodeIcon);
     const newNode = {
       id: `node-${nodes.length}`,
-      label: nodes.length,
+      label: `Node ${nodes.length}`,
       color: generateNodeColor(),
-      icon: generateNodeIcon()
+      icon: nodeIcon
     };
 
     if (nodes.length === MAX_NODES) {
@@ -166,13 +168,13 @@
   {#each nodes as node, index}
     {@const position = calculateNodePositions(index, nodes.length)}
     <div
+      in:scale={{
+        duration: 500
+      }}
       class="absolute flex flex-col items-center transition-all duration-500 ease-in-out"
       style="transform: translate({position.x}px, {position.y}px);"
     >
       <button
-        in:scale={{
-          duration: 500
-        }}
         class="flex transform items-center justify-center rounded-full shadow-md transition-all duration-500 ease-in-out hover:scale-110"
         style="
           width: {childNodeSize}px;
@@ -192,7 +194,7 @@
           <Icon name={node.icon} class="size-6" />
         {/if}
       </button>
-      <span class="bg-card dark:bg-secondary mt-2 rounded-full px-3 py-1 text-sm shadow"
+      <span class="bg-card dark:bg-secondary mt-2 rounded-full px-3 py-1 text-xs shadow"
         >{node.id === 'create-node' ? 'Create Action' : node.label}</span
       >
     </div>
