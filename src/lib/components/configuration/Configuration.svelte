@@ -3,6 +3,7 @@
   import Instruction from '@components/configuration/content/Instruction.svelte';
   import Tools from '@components/configuration/content/Tools.svelte';
   import Separator from '@components/shared/Separator.svelte';
+  import Editor from '@components/configuration/content/Editor.svelte';
 </script>
 
 <div
@@ -13,5 +14,6 @@
     <Instruction />
     <Separator/>
     <Tools />
+    <Editor />
   </div>
 </div>
