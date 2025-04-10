@@ -32,6 +32,6 @@
 </script>
 
 <div class="text-foreground bg-background flex h-[calc(100vh-56px)] flex-col lg:flex-row">
-  <Configuration />
   <Canvas />
+  <Configuration />
 </div>

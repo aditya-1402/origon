@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import { scale } from 'svelte/transition';
   import { AGENT_COLORS } from '$lib/utils/constants';
   import Icon from '$lib/components/shared/Icon.svelte';
@@ -20,13 +21,15 @@
   const CREATE_NODE = {
     id: 'create-node',
     label: 'Create',
-    color: '#000000'
+    color: '#f35b05'
   };
 
   // STATES & PROPS
   let radius = $state(100);
   let mainNodeSize = $state(100);
   let childNodeSize = $state(56);
+  let centerX = $state();
+  let centerY = $state();
   let nodes = $state([CREATE_NODE]);
   let containerElement = $state(null);
   let usedColors = $state(new Set());
@@ -81,16 +84,27 @@
     return { x, y };
   }
 
-  function generateCurvedPath(x, y) {
-    const distance = Math.sqrt(x * x + y * y);
-    const offsetFactor = distance * 0.2;
+  function generateStraightLine(x, y) {
+    return `M 0,0 L ${x},${y}`;
+  }
 
-    // Calculate the perpendicular vector
-    const perpX = (-y / distance) * offsetFactor;
-    const perpY = (x / distance) * offsetFactor;
+  function generatePath(x, y) {
+    const isOnAxis = x === 0 || y === 0;
 
-    // Create the path using a quadratic Bezier curve
-    return `M 0,0 Q ${perpX},${perpY} ${x},${y}`;
+    if (isOnAxis) {
+      return `M 0,0 L ${x},${y}`;
+    }
+
+    const distFactor = 0.25; // how far out the control points reach
+    const lift = 25; // how much curve is applied vertically
+
+    const controlX1 = x * distFactor;
+    const controlY1 = y < 0 ? y * distFactor - lift : y * distFactor + lift;
+
+    const controlX2 = x * (1 - distFactor);
+    const controlY2 = y < 0 ? y * (1 - distFactor) - lift : y * (1 - distFactor) + lift;
+
+    return `M 0,0 C ${controlX1},${controlY1} ${controlX2},${controlY2} ${x},${y}`;
   }
 
   // EFFECTS
@@ -102,14 +116,19 @@
         const minDimension = Math.min(width, height) * 0.85;
 
         radius = minDimension / 2 - childNodeSize;
-        mainNodeSize = Math.max(MAIN_NODE_SIZE, Math.min(MAIN_NODE_SIZE, minDimension * 0.15));
-        childNodeSize = Math.max(CHILD_NODE_SIZE, Math.min(CHILD_NODE_SIZE, minDimension * 0.1));
+        mainNodeSize = Math.max(mainNodeSize, Math.min(mainNodeSize, minDimension * 0.15));
+        childNodeSize = Math.max(childNodeSize, Math.min(childNodeSize, minDimension * 0.1));
       }
     };
 
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  });
+
+  onMount(() => {
+    centerX = containerElement.offsetWidth / 2;
+    centerY = containerElement.offsetHeight / 2;
   });
 </script>
 
@@ -118,13 +137,14 @@
   class="relative flex h-full w-full items-center justify-center overflow-hidden"
 >
   <svg class="pointer-events-none absolute h-full w-full">
-    <g transform="translate(50%, 50%)">
+    <g transform={`translate(${centerX}, ${centerY})`}>
       {#each nodes as node, index}
         {@const position = calculateNodePositions(index, nodes.length)}
         <path
-          d={generateCurvedPath(position.x, position.y)}
+          id={node.id}
+          d={generatePath(position.x, position.y)}
           stroke={node.color}
-          strokeWidth="2"
+          stroke-width="2"
           fill="none"
           class="transition-all duration-500 ease-in-out"
         />
@@ -138,33 +158,44 @@
       width: {mainNodeSize}px;
       height: {mainNodeSize}px;
     "
-    class="absolute z-10 flex transform items-center justify-center rounded-full bg-gray-800 text-white shadow-lg transition-all duration-300 hover:scale-105"
+    class="absolute z-10 flex transform items-center justify-center rounded-full bg-gray-800 text-white shadow-lg transition-all duration-300 hover:scale-110"
   >
     <Icon name="origon" class="size-12" />
   </button>
 
   {#each nodes as node, index}
     {@const position = calculateNodePositions(index, nodes.length)}
-    <button
-      in:scale={{
-        duration: 500
-      }}
-      class="absolute flex transform items-center justify-center rounded-full shadow-md transition-all duration-500 ease-in-out hover:scale-105"
-      style="
-        width: {childNodeSize}px;
-        height: {childNodeSize}px;
-        transform: translate({position.x}px, {position.y}px);
-        background-color: {node.color};
-        color: white;
-      "
-      onclick={node.id === 'create-node' ? addNode : undefined}
+    <div
+      class="absolute flex flex-col items-center transition-all duration-500 ease-in-out"
+      style="transform: translate({position.x}px, {position.y}px);"
     >
-      {#if node.id === 'create-node'}
-        <Icon name="plus" class="size-6" />
-      {:else}
-        <Icon name={node.icon} class="size-6" />
-      {/if}
-    </button>
+      <button
+        in:scale={{
+          duration: 500
+        }}
+        class="flex transform items-center justify-center rounded-full shadow-md transition-all duration-500 ease-in-out hover:scale-110"
+        style="
+          width: {childNodeSize}px;
+          height: {childNodeSize}px;
+          background-color: {node.color};
+          color: white;
+        "
+        onclick={node.id === 'create-node'
+          ? addNode
+          : () => {
+              console.log('node clicked', node.label);
+            }}
+      >
+        {#if node.id === 'create-node'}
+          <Icon name="plus" class="size-6" />
+        {:else}
+          <Icon name={node.icon} class="size-6" />
+        {/if}
+      </button>
+      <span class="bg-card dark:bg-secondary mt-2 rounded-full px-3 py-1 text-sm shadow"
+        >{node.id === 'create-node' ? 'Create Action' : node.label}</span
+      >
+    </div>
   {/each}
 </div>
 
