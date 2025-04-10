@@ -25,15 +25,18 @@
   };
 
   // STATES & PROPS
+  let centerX = $state();
+  let centerY = $state();
+
   let radius = $state(100);
   let mainNodeSize = $state(100);
   let childNodeSize = $state(56);
-  let centerX = $state();
-  let centerY = $state();
+
   let nodes = $state([CREATE_NODE]);
-  let containerElement = $state(null);
-  let usedColors = $state(new Set());
   let usedIcons = $state(new Set());
+  let usedColors = $state(new Set());
+
+  let containerElement = $state(null);
 
   // FUNCTIONS & HANDLERS
   function generateNodeColor() {
@@ -140,7 +143,7 @@
 >
   <svg class="pointer-events-none absolute h-full w-full">
     <g transform={`translate(${centerX}, ${centerY})`}>
-      {#each nodes as node, index}
+      {#each nodes as node, index (node.id)}
         {@const position = calculateNodePositions(index, nodes.length)}
         <path
           id={node.id}
@@ -165,7 +168,7 @@
     <Icon name="origon" class="size-12" />
   </button>
 
-  {#each nodes as node, index}
+  {#each nodes as node, index (node.id)}
     {@const position = calculateNodePositions(index, nodes.length)}
     <div
       in:scale={{
